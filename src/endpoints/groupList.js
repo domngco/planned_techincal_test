@@ -12,16 +12,16 @@ MongoClient.connect(
   }
 );
 
-let EmployeeList = app.get("/employee-list", (req, res) => {
+let GroupList = app.get("/group-list", (req, res) => {
   dbo
-    .collection("employees")
+    .collection("groups")
     .find({})
-    .toArray((error, allEmployees) => {
+    .toArray((error, allGroups) => {
       if (error) {
         res.send(
           JSON.stringify({
             success: false,
-            message: "Error unable to fetch employee list"
+            message: "Error unable to fetch Group list"
           })
         );
         return;
@@ -29,10 +29,10 @@ let EmployeeList = app.get("/employee-list", (req, res) => {
       res.send(
         JSON.stringify({
           success: true,
-          message: allEmployees
+          message: allGroups
         })
       );
     });
 });
 
-module.exports = EmployeeList;
+module.exports = GroupList;

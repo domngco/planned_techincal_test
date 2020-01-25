@@ -14,38 +14,36 @@ MongoClient.connect(
   }
 );
 
-let AddEmployee = app.post("/add-employee", upload.none(), (req, res) => {
+let AddGroup = app.post("/add-group", upload.none(), (req, res) => {
   let _name = req.body.name;
-  let _title = req.body.title;
-  let _email = req.body.email;
-  let _phone = req.body.phone;
-  dbo.collection("employees").findOne({ name: _name }, (error, employee) => {
+  let _department = req.body.department;
+  let _description = req.body.description;
+  dbo.collection("groups").findOne({ name: _name }, (error, group) => {
     if (error) {
       res.send(JSON.stringify({ success: false }));
       return;
     }
-    if (employee !== null) {
+    if (group !== null) {
       res.send(
         JSON.stringify({
           success: false,
-          message: "Employee is already in the database"
+          message: "Group is already in the database"
         })
       );
       return;
     }
-    dbo.collection("employees").insertOne(
+    dbo.collection("groups").insertOne(
       {
         name: _name,
-        title: _title,
-        email: _email,
-        phone: _phone,
+        department: _department,
+        description: _description,
         dateJoined: Date(Date.now()).toString()
       },
       error => {
         res.send(
           JSON.stringify({
             success: true,
-            message: "A new employee has been added!"
+            message: "A new group has been added!"
           })
         );
         return;
@@ -54,4 +52,4 @@ let AddEmployee = app.post("/add-employee", upload.none(), (req, res) => {
   });
 });
 
-module.exports = AddEmployee;
+module.exports = AddGroup;

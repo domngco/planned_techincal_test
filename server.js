@@ -5,6 +5,8 @@ let reloadMagic = require("./reload-magic.js");
 let AdminFetch = require("./src/endpoints/admin.js");
 let AddEmployee = require("./src/endpoints/addEmployee.js");
 let EmployeeList = require("./src/endpoints/employeeList.js");
+let AddGroup = require("./src/endpoints/addGroup.js");
+let GroupList = require("./src/endpoints/groupList.js");
 
 reloadMagic(app);
 
@@ -12,8 +14,12 @@ app.use(cookieParser());
 app.use("/", express.static("build"));
 app.use("/", express.static("public"));
 app.use(AdminFetch);
+
 app.use(AddEmployee);
 app.use(EmployeeList);
+
+app.use(AddGroup);
+app.use(GroupList);
 
 app.all("/*", (req, res, next) => {
   // needed for react router

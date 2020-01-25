@@ -12,6 +12,9 @@ import EmployeeList from "../employee/EmployeeList.jsx";
 
 // Group(s) //
 
+import GroupForm from "../group/groupForm/GroupForm.jsx";
+import GroupList from "../group/GroupList.jsx";
+
 class Content extends Component {
   render() {
     return (
@@ -21,6 +24,8 @@ class Content extends Component {
           <Route exact={true} path="/admin" component={Admin} />
           <Route exact={true} path="/add-employee" component={EmployeeForm} />
           <Route exact={true} path="/employee-list" component={EmployeeList} />
+          <Route exact={true} path="/add-group" component={GroupForm} />
+          <Route exact={true} path="/group-list" component={GroupList} />
         </Switch>
       </React.Fragment>
     );

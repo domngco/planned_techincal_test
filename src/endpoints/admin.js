@@ -6,9 +6,13 @@ let authData = require("./authData");
 
 let MongoClient = require("mongodb").MongoClient;
 let dbo = undefined;
-MongoClient.connect(authData.url, { useNewUrlParser: true }, (err, db) => {
-  dbo = db.db(authData.dataBase);
-});
+MongoClient.connect(
+  authData.url,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  (err, db) => {
+    dbo = db.db(authData.dataBase);
+  }
+);
 
 let AdminFetch = app.post("/admin", upload.none(), (req, res) => {
   let _username = req.body.username;
