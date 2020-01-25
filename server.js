@@ -1,19 +1,25 @@
-let express = require('express')
-let app = express()
-let reloadMagic = require('./reload-magic.js')
+let express = require("express");
+let app = express();
+let cookieParser = require("cookie-parser");
+let reloadMagic = require("./reload-magic.js");
+let AdminFetch = require("./src/endpoints/admin.js");
+let AddEmployee = require("./src/endpoints/addEmployee.js");
+let EmployeeList = require("./src/endpoints/employeeList.js");
 
-reloadMagic(app)
+reloadMagic(app);
 
-app.use('/', express.static('build')); // Needed for the HTML and JS files
-app.use('/', express.static('public')); // Needed for local assets
+app.use(cookieParser());
+app.use("/", express.static("build"));
+app.use("/", express.static("public"));
+app.use(AdminFetch);
+app.use(AddEmployee);
+app.use(EmployeeList);
 
-// Your endpoints go after this line
+app.all("/*", (req, res, next) => {
+  // needed for react router
+  res.sendFile(__dirname + "/build/index.html");
+});
 
-// Your endpoints go before this line
-
-app.all('/*', (req, res, next) => { // needed for react router
-    res.sendFile(__dirname + '/build/index.html');
-})
-
-
-app.listen(4000, '0.0.0.0', () => { console.log("Server running on port 4000") })
+app.listen(4000, "0.0.0.0", () => {
+  console.log("Server running on port 4000");
+});

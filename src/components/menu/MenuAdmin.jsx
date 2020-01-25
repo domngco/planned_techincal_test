@@ -21,8 +21,8 @@ class MenuAdmin extends Component {
             <Link to="/">
               <img src="https://planned.com/wp-content/uploads/assets/logo-planned.svg" />
             </Link>
-            <Link to="/employees">Employees</Link>
-            <Link to="/groups">Groups</Link>
+            <Link to="/employee-list">Employees</Link>
+            <Link to="/group-list">Groups</Link>
             <div onClick={this.toggleCreate}>+</div>
           </div>
         ) : (
@@ -30,10 +30,10 @@ class MenuAdmin extends Component {
             <Link to="/">
               <img src="https://planned.com/wp-content/uploads/assets/logo-planned.svg" />
             </Link>
-            <Link to="/employees">Employees</Link>
-            <Link to="/groups">Groups</Link>
-            <Link to="/create-user">Add an Employee</Link>
-            <Link to="/create-group">Add a Group</Link>
+            <Link to="/employee-list">Employees</Link>
+            <Link to="/group-list">Groups</Link>
+            <Link to="/add-employee">Add an Employee</Link>
+            <Link to="/add-group">Add a Group</Link>
             <div onClick={this.toggleCreate}>x</div>
           </div>
         )}

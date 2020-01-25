@@ -8,8 +8,14 @@ class App extends Component {
     return (
       <React.Fragment>
         <BrowserRouter>
-          <Menu />
-          <Content />
+          <div>
+            <div>
+              <Menu />
+            </div>
+            <div>
+              <Content />
+            </div>
+          </div>
         </BrowserRouter>
       </React.Fragment>
     );

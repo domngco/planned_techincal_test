@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 class UnconnectedAdmin extends Component {
@@ -31,13 +31,13 @@ class UnconnectedAdmin extends Component {
     });
     let responseBody = await response.text();
     let body = JSON.parse(responseBody);
-    if (!body.succes) {
+    if (!body.success) {
       alert(body.message);
       return;
     }
     if (body.success) {
       this.props.dispatch({
-        type: "admin"
+        type: "login-successful"
       });
     }
     this.props.history.push("/");
@@ -70,4 +70,4 @@ class UnconnectedAdmin extends Component {
 
 let Admin = connect()(UnconnectedAdmin);
 
-export default Admin;
+export default withRouter(Admin);
