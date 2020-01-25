@@ -5,6 +5,7 @@ let reloadMagic = require("./reload-magic.js");
 let AdminFetch = require("./src/endpoints/admin.js");
 let AddEmployee = require("./src/endpoints/addEmployee.js");
 let EmployeeList = require("./src/endpoints/employeeList.js");
+let Employee = require("./src/endpoints/employee.js");
 let AddGroup = require("./src/endpoints/addGroup.js");
 let GroupList = require("./src/endpoints/groupList.js");
 
@@ -17,6 +18,7 @@ app.use(AdminFetch);
 
 app.use(AddEmployee);
 app.use(EmployeeList);
+app.use(Employee);
 
 app.use(AddGroup);
 app.use(GroupList);

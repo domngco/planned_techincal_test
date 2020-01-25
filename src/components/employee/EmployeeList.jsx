@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class EmployeeList extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export class EmployeeList extends Component {
             return (
               <div key={index}>
                 <div>{employee.name}</div>
+                <Link to={"/employee/" + employee._id}>Learn More</Link>
               </div>
             );
           })}

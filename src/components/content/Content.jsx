@@ -9,6 +9,7 @@ import Admin from "../admin/Admin.jsx";
 // Employee(s) //
 import EmployeeForm from "../employee/employeeForm/EmployeeForm.jsx";
 import EmployeeList from "../employee/EmployeeList.jsx";
+import Employee from "../employee/Employee.jsx";
 
 // Group(s) //
 
@@ -24,6 +25,7 @@ class Content extends Component {
           <Route exact={true} path="/admin" component={Admin} />
           <Route exact={true} path="/add-employee" component={EmployeeForm} />
           <Route exact={true} path="/employee-list" component={EmployeeList} />
+          <Route exact={true} path="/employee/:id" component={Employee} />
           <Route exact={true} path="/add-group" component={GroupForm} />
           <Route exact={true} path="/group-list" component={GroupList} />
         </Switch>
