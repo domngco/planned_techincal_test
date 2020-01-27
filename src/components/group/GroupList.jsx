@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class GroupList extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export class GroupList extends Component {
             return (
               <div key={index}>
                 <div>{group.name}</div>
+                <Link to={"/group/" + group._id}>Learn More</Link>
               </div>
             );
           })}

@@ -39,7 +39,8 @@ class UnconnectedGroupForm extends Component {
     event.preventDefault();
     let data = new FormData();
     data.append("name", this.state.name);
-    data.append("title", this.state.department);
+    data.append("department", this.state.department);
+    data.append("description", this.state.description);
     let response = await fetch("/add-group", {
       method: "POST",
       body: data

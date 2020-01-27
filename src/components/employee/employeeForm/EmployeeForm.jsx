@@ -92,7 +92,6 @@ class UnconnectedEmployeeForm extends Component {
         return (
           <Confirm
             previousStep={this.previousStep}
-            nextStep={this.nextStep}
             handleSubmit={this.handleSubmit}
             values={values}
           />

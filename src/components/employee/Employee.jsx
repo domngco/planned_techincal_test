@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-export class EmployeeList extends Component {
+export class UnconnectedEmployee extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,10 +38,27 @@ export class EmployeeList extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>{this.state.employee.name}</div>
+        {this.props.loggedIn ? (
+          <div>
+            <div>{this.state.employee.name}</div>
+            <Link to={"/edit-employee/" + this.props.match.params.id}>
+              Edit Employee
+            </Link>
+          </div>
+        ) : (
+          <div>{this.state.employee.name}</div>
+        )}
       </React.Fragment>
     );
   }
 }
 
-export default EmployeeList;
+let mapStateToProps = state => {
+  return {
+    loggedIn: state.loggedIn
+  };
+};
+
+let Employee = connect(mapStateToProps)(UnconnectedEmployee);
+
+export default Employee;
