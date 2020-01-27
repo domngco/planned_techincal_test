@@ -18,6 +18,7 @@ import GroupForm from "../group/groupForm/GroupForm.jsx";
 import GroupList from "../group/GroupList.jsx";
 import Group from "../group/Group.jsx";
 import EditGroup from "../group/editGroup/EditGroup.jsx";
+import GroupAssignment from "../group/groupAssignment/GroupAssignment.jsx";
 
 class Content extends Component {
   render() {
@@ -38,6 +39,11 @@ class Content extends Component {
           <Route exact={true} path="/group-list" component={GroupList} />
           <Route exact={true} path="/group/:id" component={Group} />
           <Route exact={true} path="/edit-group/:id" component={EditGroup} />
+          <Route
+            exact={true}
+            path="/group-assignment/:id"
+            component={GroupAssignment}
+          />
         </Switch>
       </React.Fragment>
     );

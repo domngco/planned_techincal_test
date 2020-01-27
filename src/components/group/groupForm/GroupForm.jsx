@@ -12,7 +12,8 @@ class UnconnectedGroupForm extends Component {
       step: 1,
       name: "",
       department: "",
-      description: ""
+      description: "",
+      members: []
     };
   }
 
@@ -41,6 +42,7 @@ class UnconnectedGroupForm extends Component {
     data.append("name", this.state.name);
     data.append("department", this.state.department);
     data.append("description", this.state.description);
+    data.append("members", this.state.members);
     let response = await fetch("/add-group", {
       method: "POST",
       body: data

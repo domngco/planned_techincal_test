@@ -44,6 +44,9 @@ export class UnconnectedGroup extends Component {
             <Link to={"/edit-group/" + this.props.match.params.id}>
               Edit Group
             </Link>
+            <Link to={"/group-assignment/" + this.props.match.params.id}>
+              Group Assignment
+            </Link>
           </div>
         ) : (
           <div>{this.state.group.name}</div>
