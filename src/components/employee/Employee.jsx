@@ -32,7 +32,6 @@ export class UnconnectedEmployee extends Component {
       this.setState({ employee: _employee });
       return;
     }
-    console.log("employee, ", this.state.employee);
   };
 
   render() {

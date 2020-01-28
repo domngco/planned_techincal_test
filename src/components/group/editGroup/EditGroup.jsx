@@ -34,7 +34,6 @@ export class UnconnectedGroup extends Component {
     }
     if (body.success) {
       this.setState({ group: _group });
-      console.log("edit group state", this.state);
       return;
     }
   };
@@ -58,7 +57,6 @@ export class UnconnectedGroup extends Component {
     this.setState(prevState => ({
       group: { ...prevState.group, [input]: event.target.value }
     }));
-    console.log("handleChange", this.state.group.name);
   };
 
   handleDelete = async () => {

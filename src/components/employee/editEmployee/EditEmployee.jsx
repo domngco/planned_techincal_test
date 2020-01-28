@@ -34,7 +34,6 @@ export class UnconnectedEmployee extends Component {
     }
     if (body.success) {
       this.setState({ employee: _employee });
-      console.log("edit employee state", this.state);
       return;
     }
   };
@@ -79,7 +78,6 @@ export class UnconnectedEmployee extends Component {
     this.setState(prevState => ({
       employee: { ...prevState.employee, [input]: event.target.value }
     }));
-    console.log("handleChange", this.state.employee.name);
   };
 
   handleSubmit = async () => {

@@ -19,13 +19,11 @@ MongoClient.connect(
 let AssignMember = app.post("/assign-member", upload.none(), (req, res) => {
   let _groupID = req.body.groupID;
   let _member = req.body.members;
-  console.log("req.body, ", req.body);
   dbo.collection("groups").updateOne(
     { _id: ObjectID(_groupID) },
     {
       $set: { members: _member }
-    },
-    { upsert: true }
+    }
   );
   return res.send(
     JSON.stringify({

@@ -19,7 +19,6 @@ export class GroupList extends Component {
     let body = JSON.parse(responseBody);
     let allGroups = body.message;
     this.setState({ groups: allGroups });
-    console.log("allGroups, ", this.state.groups);
   };
 
   render() {

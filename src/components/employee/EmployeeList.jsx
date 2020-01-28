@@ -19,7 +19,6 @@ export class EmployeeList extends Component {
     let body = JSON.parse(responseBody);
     let allEmployees = body.message;
     this.setState({ employees: allEmployees });
-    console.log("allEmployees, ", this.state.employees);
   };
 
   render() {

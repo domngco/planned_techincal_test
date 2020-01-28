@@ -32,7 +32,6 @@ export class UnconnectedGroup extends Component {
       this.setState({ group: _group });
       return;
     }
-    console.log("group, ", this.state.group);
   };
 
   render() {

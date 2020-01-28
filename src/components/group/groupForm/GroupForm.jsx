@@ -33,7 +33,6 @@ class UnconnectedGroupForm extends Component {
 
   handleChange = input => event => {
     this.setState({ [input]: event.target.value });
-    console.log("state", this.state);
   };
 
   handleSubmit = async () => {

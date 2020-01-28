@@ -43,10 +43,9 @@ export class UnconnectedGroupAssignment extends Component {
       return employee.member === true;
     });
     let _mapMembers = _filterMembers.map(member => {
-      return member;
+      return member._id;
     });
     let _member = _mapMembers;
-    console.log("xxxxxx", _member);
     let data = new FormData();
     data.append("groupID", this.props.match.params.id);
     data.append("members", _member);
@@ -55,7 +54,6 @@ export class UnconnectedGroupAssignment extends Component {
       body: data
     });
     let responseBody = await response.text();
-    console.log("responseBody,", responseBody);
     let body = JSON.parse(responseBody);
     if (!body.success) {
       alert(body.message);
