@@ -16,7 +16,7 @@ let Group = require("./src/endpoints/group.js");
 let EditGroup = require("./src/endpoints/editGroup.js");
 let DeleteGroup = require("./src/endpoints/deleteGroup.js");
 
-let AssignMember = require("./src/endpoints/assignMember.js");
+let GroupMembers = require("./src/endpoints/groupMembers.js");
 
 reloadMagic(app);
 
@@ -37,7 +37,7 @@ app.use(Group);
 app.use(EditGroup);
 app.use(DeleteGroup);
 
-app.use(AssignMember);
+app.use(GroupMembers);
 
 app.all("/*", (req, res, next) => {
   // needed for react router

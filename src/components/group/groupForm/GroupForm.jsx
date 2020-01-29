@@ -70,7 +70,6 @@ class UnconnectedGroupForm extends Component {
             {this.props.loggedIn ? (
               <GroupDetails
                 nextStep={this.nextStep}
-                previousStep={this.previousStep}
                 handleChange={this.handleChange}
                 values={values}
               />
@@ -82,8 +81,8 @@ class UnconnectedGroupForm extends Component {
       case 2:
         return (
           <Confirm
-            previousStep={this.previousStep}
             nextStep={this.nextStep}
+            previousStep={this.previousStep}
             handleSubmit={this.handleSubmit}
             values={values}
           />
