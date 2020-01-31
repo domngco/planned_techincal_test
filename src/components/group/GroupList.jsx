@@ -30,6 +30,7 @@ export class GroupList extends Component {
               <div key={index}>
                 <div>{group.name}</div>
                 <Link to={"/group/" + group._id}>Learn More</Link>
+                <Link to={"/group-membership/" + group._id}>Add Members</Link>
               </div>
             );
           })}

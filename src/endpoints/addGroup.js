@@ -37,7 +37,6 @@ let AddGroup = app.post("/add-group", upload.none(), (req, res) => {
         name: _name,
         department: _department,
         description: _description,
-        members: _members,
         dateJoined: Date(Date.now()).toString()
       },
       error => {

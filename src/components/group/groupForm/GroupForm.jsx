@@ -48,13 +48,14 @@ class UnconnectedGroupForm extends Component {
     });
     let responseBody = await response.text();
     let body = JSON.parse(responseBody);
+    console.log("body", body);
     if (!body.success) {
       alert(body.message);
       return;
     }
     if (body.success) {
       alert(body.message);
-      this.props.history.push("/");
+      this.props.history.push("/group-list");
       return;
     }
   };

@@ -62,7 +62,7 @@ class UnconnectedEmployeeForm extends Component {
     }
     if (body.success) {
       alert(body.message);
-      this.props.history.push("/");
+      this.props.history.push("/employee-membership");
       return;
     }
   };

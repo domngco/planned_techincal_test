@@ -16,8 +16,8 @@ let Group = require("./src/endpoints/group.js");
 let EditGroup = require("./src/endpoints/editGroup.js");
 let DeleteGroup = require("./src/endpoints/deleteGroup.js");
 
-let GroupMembers = require("./src/endpoints/groupMembers.js");
-
+let GroupMembership = require("./src/endpoints/groupMembership.js");
+let GroupMembershipList = require("./src/endpoints/groupMemberList.js");
 reloadMagic(app);
 
 app.use(cookieParser());
@@ -37,7 +37,8 @@ app.use(Group);
 app.use(EditGroup);
 app.use(DeleteGroup);
 
-app.use(GroupMembers);
+app.use(GroupMembership);
+app.use(GroupMembershipList);
 
 app.all("/*", (req, res, next) => {
   // needed for react router

@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-export class UnconnectedGroup extends Component {
+export class UnconnectedGroupMembersList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      group: {}
+      members: []
     };
   }
 
@@ -17,45 +17,44 @@ export class UnconnectedGroup extends Component {
   handleGroup = async () => {
     let data = new FormData();
     data.append("groupID", this.props.match.params.id);
-    let response = await fetch("/group", {
+    let response = await fetch("/group-member-list", {
       method: "POST",
       body: data
     });
     let responseBody = await response.text();
     let body = JSON.parse(responseBody);
-    let _group = body.message;
+    let members = body.message;
+    console.log("**********", members);
     if (!body.success) {
-      alert("Unsuccessful, ", body.message);
+      alert("Unsuccessful, ", members);
       return;
     }
     if (body.success) {
-      this.setState({ group: _group });
+      this.setState({ members: members });
       return;
     }
+    console.log("$$$$$$$$", this.state);
   };
 
   render() {
-    let { groupID } = this.props.match.params.id;
+    let { members } = this.state;
     return (
       <React.Fragment>
         {this.props.loggedIn ? (
           <React.Fragment>
-            <div>
-              <div>{this.state.group.name}</div>
-              <Link to={"/edit-group/" + this.props.match.params.id}>
-                Edit Group
-              </Link>
-              <Link to={"/group-members-list/" + this.props.match.params.id}>
-                View Group Members
-              </Link>
-            </div>
+            {members.map((member, index) => {
+              return (
+                <div key={index}>
+                  <div>{member.name}</div>
+                  <div>Remove Member</div>
+                </div>
+              );
+            })}
+            <div>Edit Members List</div>
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <div>{this.state.group.name}</div>
-            <Link to={"/group-members-list/" + this.props.match.params.id}>
-              View Group Members
-            </Link>
+            <div>Hitting</div>
           </React.Fragment>
         )}
       </React.Fragment>
@@ -69,6 +68,6 @@ let mapStateToProps = state => {
   };
 };
 
-let Group = connect(mapStateToProps)(UnconnectedGroup);
+let GroupMembersList = connect(mapStateToProps)(UnconnectedGroupMembersList);
 
-export default Group;
+export default GroupMembersList;

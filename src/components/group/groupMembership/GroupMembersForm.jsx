@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import AssignGroupMembership from "./AssignGroupMembership.jsx";
+import ViewGroupMembership from "./ViewGroupMembership.jsx";
+import ConfirmGroupMembership from "./ConfirmGroupMembership.jsx";
 
-import EditGroupMembers from "./EditGroupMembers.jsx";
-import ConfirmGroupMembers from "./ConfirmGroupMembers.jsx";
-
-export class UnconnectedGroupMembers extends Component {
+export class UnconnectedGroupMembersFrom extends Component {
   constructor(props) {
     super(props);
     this.state = {
       step: 1,
+      employees: [],
       members: []
     };
   }
@@ -37,30 +38,33 @@ export class UnconnectedGroupMembers extends Component {
     let responseBody = await response.text();
     let body = JSON.parse(responseBody);
     let employees = body.message;
-    let members = employees.map(employee =>
+    let _employees = employees.map(employee =>
       Object.assign({}, employee, {
         member: false
       })
     );
-    this.setState({ members: members });
+    this.setState({ employees: _employees });
   };
 
-  handleToggleMember = index => {
+  toggleMember = index => {
     event.preventDefault();
-    let members = this.state.members;
-    members[index].member = !members[index].member;
-    this.setState({ member: members });
+    let employees = this.state.employees;
+    employees[index].member = !employees[index].member;
+    this.setState({ employees: employees });
+    console.log("this.state.employees", this.state.employees);
   };
 
-  handleMembership = () => {
-    let members = this.state.members;
-    let filterMembers = members.filter(member => {
-      return member.member === true;
+  handleMembers = () => {
+    event.preventDefault();
+    let employees = this.state.employees;
+    let filterEmployees = employees.filter(employee => {
+      return employee.member === true;
     });
-    let mapMembers = filterMembers.map(member => {
-      return member;
+    let mapEmployees = filterEmployees.map(employee => {
+      return employee;
     });
-    this.setState({ members: mapMembers });
+    this.setState({ members: mapEmployees });
+    console.log("this.state.members", this.state.members);
   };
 
   handleSubmit = async () => {
@@ -88,17 +92,17 @@ export class UnconnectedGroupMembers extends Component {
 
   render() {
     let { step } = this.state;
-    let { members } = this.state;
+    let { employees, members } = this.state;
     switch (step) {
       case 1:
         return (
           <React.Fragment>
             {this.props.loggedIn ? (
-              <EditGroupMembers
-                members={members}
-                handleToggleMember={this.handleToggleMember}
+              <AssignGroupMembership
+                employees={employees}
+                toggleMember={this.toggleMember}
+                handleMembers={this.handleMembers}
                 nextStep={this.nextStep}
-                handleMembership={this.handleMembership}
               />
             ) : (
               this.props.history.push("/admin")
@@ -107,8 +111,15 @@ export class UnconnectedGroupMembers extends Component {
         );
       case 2:
         return (
-          <ConfirmGroupMembers
+          <ViewGroupMembership
             members={members}
+            nextStep={this.nextStep}
+            previousStep={this.previousStep}
+          />
+        );
+      case 3:
+        return (
+          <ConfirmGroupMembership
             previousStep={this.previousStep}
             handleSubmit={this.handleSubmit}
           />
@@ -123,6 +134,6 @@ let mapStateToProps = state => {
   };
 };
 
-let GroupMembers = connect(mapStateToProps)(UnconnectedGroupMembers);
+let GroupMembersFrom = connect(mapStateToProps)(UnconnectedGroupMembersFrom);
 
-export default withRouter(GroupMembers);
+export default withRouter(GroupMembersFrom);
