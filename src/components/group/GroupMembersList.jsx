@@ -24,16 +24,14 @@ export class UnconnectedGroupMembersList extends Component {
     let responseBody = await response.text();
     let body = JSON.parse(responseBody);
     let members = body.message;
-    console.log("**********", members);
     if (!body.success) {
-      alert("Unsuccessful, ", members);
+      alert(body.message);
       return;
     }
     if (body.success) {
       this.setState({ members: members });
       return;
     }
-    console.log("$$$$$$$$", this.state);
   };
 
   render() {
@@ -54,7 +52,13 @@ export class UnconnectedGroupMembersList extends Component {
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <div>Hitting</div>
+            {members.map((member, index) => {
+              return (
+                <div key={index}>
+                  <div>{member.name}</div>
+                </div>
+              );
+            })}
           </React.Fragment>
         )}
       </React.Fragment>

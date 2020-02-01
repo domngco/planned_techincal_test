@@ -20,9 +20,9 @@ let GroupMembersList = app.post(
   upload.none(),
   (req, res) => {
     let _groupID = req.body.groupID;
-    dbo.collection("group-membership").find(
-      { groupID: _groupID }.toArray((error, group) => {
-        console.log("group", group.members);
+    dbo
+      .collection("group-membership")
+      .findOne({ groupID: _groupID }, (error, group) => {
         if (error) {
           res.send(
             JSON.stringify({
@@ -32,14 +32,22 @@ let GroupMembersList = app.post(
           );
           return;
         }
+        if (group === null) {
+          res.send(
+            JSON.stringify({
+              success: false,
+              message: "Group has no members"
+            })
+          );
+          return;
+        }
         res.send(
           JSON.stringify({
             success: true,
-            message: group
+            message: group.members
           })
         );
-      })
-    );
+      });
   }
 );
 
