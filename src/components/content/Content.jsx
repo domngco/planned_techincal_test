@@ -21,8 +21,6 @@ import EditGroup from "../group/editGroup/EditGroup.jsx";
 
 // Group Membership //
 
-import GroupMembershipForm from "../group/groupMembership/GroupMembersForm.jsx";
-import GroupMembersList from "../group/GroupMembersList.jsx";
 import AddGroupMembers from "../group/editGroupMembership/AddGroupMembers.jsx";
 
 class Content extends Component {
@@ -45,17 +43,6 @@ class Content extends Component {
 
           <Route exact={true} path="/group/:id" component={Group} />
           <Route exact={true} path="/edit-group/:id" component={EditGroup} />
-          <Route
-            exact={true}
-            path="/group-members-list/:id"
-            component={GroupMembersList}
-          />
-
-          <Route
-            exact={true}
-            path="/group-membership/:id"
-            component={GroupMembershipForm}
-          />
           <Route
             exact={true}
             path="/add-group-members/:id"
