@@ -23,6 +23,7 @@ import EditGroup from "../group/editGroup/EditGroup.jsx";
 
 import GroupMembershipForm from "../group/groupMembership/GroupMembersForm.jsx";
 import GroupMembersList from "../group/GroupMembersList.jsx";
+import AddGroupMembers from "../group/editGroupMembership/AddGroupMembers.jsx";
 
 class Content extends Component {
   render() {
@@ -54,6 +55,11 @@ class Content extends Component {
             exact={true}
             path="/group-membership/:id"
             component={GroupMembershipForm}
+          />
+          <Route
+            exact={true}
+            path="/add-group-members/:id"
+            component={AddGroupMembers}
           />
         </Switch>
       </React.Fragment>

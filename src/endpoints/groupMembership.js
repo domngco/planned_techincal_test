@@ -20,6 +20,8 @@ let GroupMembership = app.post(
   upload.none(),
   (req, res) => {
     let _groupID = req.body.groupID;
+    let _members = req.body.members;
+    console.log("_members groupMembership,", _members);
     let members = JSON.parse(req.body.members);
     if (members === []) {
       return res.send(

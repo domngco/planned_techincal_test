@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import RemoveMember from "./editGroupMembership/RemoveMember.jsx";
 
 export class UnconnectedGroupMembersList extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ export class UnconnectedGroupMembersList extends Component {
     let responseBody = await response.text();
     let body = JSON.parse(responseBody);
     let members = body.message;
+    console.log("members, ", members);
     if (!body.success) {
       alert(body.message);
       return;
@@ -41,18 +43,24 @@ export class UnconnectedGroupMembersList extends Component {
         {this.props.loggedIn ? (
           <React.Fragment>
             {members.map((member, index) => {
+              let memberID = this.state.members[index]._id;
+              let groupID = this.props.match.params.id;
               return (
                 <div key={index}>
                   <div>{member.name}</div>
-                  <div>Remove Member</div>
+                  <RemoveMember memberID={memberID} groupID={groupID} />
                 </div>
               );
             })}
-            <div>Edit Members List</div>
+            <Link to={"/add-group-members/" + this.props.match.params.id}>
+              Add Members
+            </Link>
           </React.Fragment>
         ) : (
           <React.Fragment>
             {members.map((member, index) => {
+              let groupID = this.props.match.params.id;
+              console.log("groupID", groupID);
               return (
                 <div key={index}>
                   <div>{member.name}</div>
