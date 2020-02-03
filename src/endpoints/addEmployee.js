@@ -15,7 +15,8 @@ MongoClient.connect(
 );
 
 let AddEmployee = app.post("/add-employee", upload.none(), (req, res) => {
-  let _name = req.body.name;
+  let _firstName = req.body.firstName;
+  let _lastName = req.body.lastName;
   let _title = req.body.title;
   let _email = req.body.email;
   let _phone = req.body.phone;
@@ -35,7 +36,8 @@ let AddEmployee = app.post("/add-employee", upload.none(), (req, res) => {
     }
     dbo.collection("employees").insertOne(
       {
-        name: _name,
+        firstName: _firstName,
+        lastName: _lastName,
         title: _title,
         email: _email,
         phone: _phone,

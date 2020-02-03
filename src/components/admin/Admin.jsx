@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { Form, Header } from "semantic-ui-react";
 
 class UnconnectedAdmin extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class UnconnectedAdmin extends Component {
 
   handlePassword = event => {
     this.setState({ password: event.target.value });
+    console.log(this.state);
   };
 
   handleSubmit = async () => {
@@ -47,22 +49,24 @@ class UnconnectedAdmin extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <input
+        <Header as="h2">Sign In</Header>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group widths="equal">
+            <Form.Input
               type="text"
               placeholder="Username"
               onChange={this.handleUsername}
             />
-            <input
-              type="text"
+            <Form.Input
+              type="password"
               placeholder="Password"
               onChange={this.handlePassword}
             />
-            <input type="submit" value="Sign In" />
-            <input type="reset" value="Clear" />
-          </form>
-        </div>
+          </Form.Group>
+          <Form.Button fluid type="submit">
+            Sign In
+          </Form.Button>
+        </Form>
       </React.Fragment>
     );
   }

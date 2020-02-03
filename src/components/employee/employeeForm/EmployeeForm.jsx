@@ -10,7 +10,8 @@ class UnconnectedEmployeeForm extends Component {
     super();
     this.state = {
       step: 1,
-      name: "",
+      firstName: "",
+      lastName: "",
       title: "",
       email: "",
       phone: ""
@@ -33,6 +34,7 @@ class UnconnectedEmployeeForm extends Component {
 
   handleChange = input => event => {
     this.setState({ [input]: event.target.value });
+    console.log(this.state);
   };
 
   handleSubmit = async () => {
@@ -46,7 +48,8 @@ class UnconnectedEmployeeForm extends Component {
       return;
     }
     let data = new FormData();
-    data.append("name", this.state.name);
+    data.append("firstName", this.state.firstName);
+    data.append("lastName", this.state.lastName);
     data.append("title", this.state.title);
     data.append("email", this.state.email);
     data.append("phone", this.state.phone);
@@ -69,8 +72,8 @@ class UnconnectedEmployeeForm extends Component {
 
   render() {
     let { step } = this.state;
-    let { name, title, email, phone } = this.state;
-    let values = { name, title, email, phone };
+    let { firstName, lastName, title, email, phone } = this.state;
+    let values = { firstName, lastName, title, email, phone };
     switch (step) {
       case 1:
         return (

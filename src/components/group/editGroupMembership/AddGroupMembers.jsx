@@ -12,9 +12,9 @@ export class UnconnectedEditMembers extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.handleEmployees();
-  };
+  }
 
   handleEmployees = async () => {
     let response = await fetch("/employee-list");

@@ -16,7 +16,6 @@ let Group = require("./src/endpoints/group.js");
 let EditGroup = require("./src/endpoints/editGroup.js");
 let DeleteGroup = require("./src/endpoints/deleteGroup.js");
 
-let GroupMembership = require("./src/endpoints/groupMembership.js");
 let GroupMembershipList = require("./src/endpoints/groupMemberList.js");
 let RemoveMember = require("./src/endpoints/removeMember.js");
 let AddMember = require("./src/endpoints/addMember.js");
@@ -40,7 +39,6 @@ app.use(Group);
 app.use(EditGroup);
 app.use(DeleteGroup);
 
-app.use(GroupMembership);
 app.use(GroupMembershipList);
 app.use(RemoveMember);
 app.use(AddMember);
@@ -53,5 +51,5 @@ app.all("/*", (req, res, next) => {
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port" ${PORT}...`);
+  console.log(`Server running on port ${PORT}...`);
 });

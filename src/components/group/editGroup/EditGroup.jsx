@@ -14,9 +14,9 @@ export class UnconnectedGroup extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.handleGroup();
-  };
+  }
 
   handleGroup = async () => {
     let data = new FormData();
