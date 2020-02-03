@@ -20,7 +20,7 @@ let AddEmployee = app.post("/add-employee", upload.none(), (req, res) => {
   let _title = req.body.title;
   let _email = req.body.email;
   let _phone = req.body.phone;
-  dbo.collection("employees").findOne({ name: _name }, (error, employee) => {
+  dbo.collection("employees").findOne({ email: _email }, (error, employee) => {
     if (error) {
       res.send(JSON.stringify({ success: false }));
       return;

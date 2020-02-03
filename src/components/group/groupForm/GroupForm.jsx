@@ -12,8 +12,7 @@ class UnconnectedGroupForm extends Component {
       step: 1,
       name: "",
       department: "",
-      description: "",
-      members: []
+      description: ""
     };
   }
 

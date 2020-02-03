@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Divider, Header, Icon, Table, Button } from "semantic-ui-react";
 
 export class UnconnectedEmployee extends Component {
   constructor(props) {
@@ -10,9 +11,9 @@ export class UnconnectedEmployee extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.handleEmployee();
-  };
+  }
 
   handleEmployee = async () => {
     let data = new FormData();
@@ -35,18 +36,78 @@ export class UnconnectedEmployee extends Component {
   };
 
   render() {
+    const { employee } = this.state;
     return (
       <React.Fragment>
-        {this.props.loggedIn ? (
-          <div>
-            <div>{this.state.employee.name}</div>
-            <Link to={"/edit-employee/" + this.props.match.params.id}>
-              Edit Employee
-            </Link>
-          </div>
-        ) : (
-          <div>{this.state.employee.name}</div>
-        )}
+        <Divider horizontal>
+          <Header as="h4">
+            <Icon name="user circle outline" />
+            Employee Details
+          </Header>
+        </Divider>
+        <Table definition>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell width={3}>First Name</Table.Cell>
+              <Table.Cell>{employee.firstName}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={3}>Last Name</Table.Cell>
+              <Table.Cell>{employee.lastName}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={3}>Job Title</Table.Cell>
+              <Table.Cell>{employee.title}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={3}>Email</Table.Cell>
+              <Table.Cell>{employee.email}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={3}>Phone</Table.Cell>
+              <Table.Cell>{employee.phone}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+          {this.props.loggedIn ? (
+            <Table.Footer fullWidth>
+              <Table.Row>
+                <Table.HeaderCell colSpan="2">
+                  <Button
+                    floated="right"
+                    icon
+                    labelPosition="left"
+                    primary
+                    size="small"
+                    as={Link}
+                    to={"/edit-employee/" + employee._id}
+                  >
+                    <Icon name="edit outline" />
+                    Edit
+                  </Button>
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Footer>
+          ) : (
+            <Table.Footer fullWidth>
+              <Table.Row>
+                <Table.HeaderCell colSpan="2">
+                  <Button
+                    floated="right"
+                    icon
+                    labelPosition="left"
+                    primary
+                    size="small"
+                    as={Link}
+                    to={"/employee-list"}
+                  >
+                    <Icon name="arrow alternate circle left outline" />
+                    Back
+                  </Button>
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Footer>
+          )}
+        </Table>
       </React.Fragment>
     );
   }

@@ -17,8 +17,8 @@ MongoClient.connect(
 );
 
 let EditEmployee = app.post("/edit-employee", upload.none(), (req, res) => {
-  let _employeeID = req.body.employeeID;
-  let _name = req.body.name;
+  let _firstName = req.body.firstName;
+  let _lastName = req.body.lastName;
   let _title = req.body.title;
   let _email = req.body.email;
   let _phone = req.body.phone;
@@ -26,7 +26,8 @@ let EditEmployee = app.post("/edit-employee", upload.none(), (req, res) => {
     { _id: ObjectID(_employeeID) },
     {
       $set: {
-        name: _name,
+        firstName: _firstName,
+        lastName: _lastName,
         title: _title,
         email: _email,
         phone: _phone

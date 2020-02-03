@@ -42,13 +42,10 @@ export class EmployeeDetails extends Component {
               defaultValue={values.phone}
             />
           </Form.Group>
-        </Form>
-        <Form.Group>
           <Grid style={{ marginTop: "1em" }}>
-            <Form.Button type="reset">Clear</Form.Button>
             <Form.Button onClick={this.next}>Next</Form.Button>
           </Grid>
-        </Form.Group>
+        </Form>
       </React.Fragment>
     );
   }

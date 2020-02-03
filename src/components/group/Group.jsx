@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Divider, Header, Icon, Table, Button } from "semantic-ui-react";
 
 export class UnconnectedGroup extends Component {
   constructor(props) {
@@ -10,9 +11,9 @@ export class UnconnectedGroup extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.handleGroup();
-  };
+  }
 
   handleGroup = async () => {
     let data = new FormData();
@@ -35,29 +36,98 @@ export class UnconnectedGroup extends Component {
   };
 
   render() {
-    let { groupID } = this.props.match.params.id;
+    const { group } = this.state;
     return (
       <React.Fragment>
-        {this.props.loggedIn ? (
-          <React.Fragment>
-            <div>
-              <div>{this.state.group.name}</div>
-              <Link to={"/edit-group/" + this.props.match.params.id}>
-                Edit Group
-              </Link>
-              <Link to={"/group-members-list/" + this.props.match.params.id}>
-                View Group Members
-              </Link>
-            </div>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <div>{this.state.group.name}</div>
-            <Link to={"/group-members-list/" + this.props.match.params.id}>
-              View Group Members
-            </Link>
-          </React.Fragment>
-        )}
+        <Divider horizontal>
+          <Header as="h4">
+            <Icon name="group" />
+            Group Details
+          </Header>
+        </Divider>
+        <Table definition>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell width={3}>Group Name</Table.Cell>
+              <Table.Cell>{group.name}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={3}>Department</Table.Cell>
+              <Table.Cell>{group.department}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell width={3}>Description</Table.Cell>
+              <Table.Cell>{group.description}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+          {this.props.loggedIn ? (
+            <Table.Footer fullWidth>
+              <Table.Row>
+                <Table.HeaderCell colSpan="1">
+                  <Button
+                    floated="left"
+                    icon
+                    labelPosition="left"
+                    primary
+                    size="small"
+                    as={Link}
+                    to={"/edit-group/" + group._id}
+                  >
+                    <Icon name="edit outline" />
+                    Edit
+                  </Button>
+                </Table.HeaderCell>
+                <Table.HeaderCell colSpan="2">
+                  <Button
+                    floated="right"
+                    icon
+                    labelPosition="left"
+                    secondary
+                    size="small"
+                    as={Link}
+                    to={"/group-members-list/" + group._id}
+                  >
+                    <Icon name="arrow alternate circle right outline" />
+                    View Members
+                  </Button>
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Footer>
+          ) : (
+            <Table.Footer fullWidth>
+              <Table.Row>
+                <Table.HeaderCell colSpan="1">
+                  <Button
+                    floated="left"
+                    icon
+                    labelPosition="left"
+                    primary
+                    size="small"
+                    as={Link}
+                    to={"/group-list"}
+                  >
+                    <Icon name="arrow alternate circle left outline" />
+                    Back
+                  </Button>
+                </Table.HeaderCell>
+                <Table.HeaderCell colSpan="2">
+                  <Button
+                    floated="right"
+                    icon
+                    labelPosition="left"
+                    secondary
+                    size="small"
+                    as={Link}
+                    to={"/group-members-list/" + group._id}
+                  >
+                    <Icon name="arrow alternate circle right outline" />
+                    View Members
+                  </Button>
+                </Table.HeaderCell>
+              </Table.Row>
+            </Table.Footer>
+          )}
+        </Table>
       </React.Fragment>
     );
   }

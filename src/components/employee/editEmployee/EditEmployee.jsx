@@ -93,7 +93,8 @@ export class UnconnectedEmployee extends Component {
     let data = new FormData();
     let employee = this.state.employee;
     data.append("employeeID", this.props.match.params.id);
-    data.append("name", employee.name);
+    data.append("firstName", employee.firstName);
+    data.append("lastName", employee.lastName);
     data.append("title", employee.title);
     data.append("email", employee.email);
     data.append("phone", employee.phone);
@@ -117,8 +118,8 @@ export class UnconnectedEmployee extends Component {
   render() {
     let { step } = this.state;
     let { employee } = this.state;
-    let { name, title, email, phone } = this.state.employee;
-    let values = { name, title, email, phone };
+    let { firstName, lastName, title, email, phone } = this.state.employee;
+    let values = { firstName, lastName, title, email, phone };
     switch (step) {
       case 1:
         return (

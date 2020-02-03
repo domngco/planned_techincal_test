@@ -40,7 +40,7 @@ class MenuNonAdmin extends Component {
             active={activeItem === "Admin"}
             onClick={this.toggleClick}
           >
-            <Icon name="user" />
+            <Icon name="sign-in" />
             Admin
           </Menu.Item>
         </Menu>
