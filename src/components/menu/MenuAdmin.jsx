@@ -67,10 +67,10 @@ class MenuAdmin extends Component {
               onClick={this.toggleClick}
             />
             <Menu.Item
-              name="Add an Group"
+              name="Add a Group"
               as={Link}
               to="/add-group"
-              active={activeItem === "Add an Group"}
+              active={activeItem === "Add a Group"}
               onClick={this.toggleClick}
             />
             <Menu.Item onClick={this.toggleHidden}>

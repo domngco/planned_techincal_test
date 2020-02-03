@@ -41,11 +41,7 @@ let AddMember = app.post("/add-member", upload.none(), (req, res) => {
             res.send(
               JSON.stringify({
                 success: true,
-                message:
-                  member.firstName +
-                  " " +
-                  member.lastName +
-                  "has been added to the group!"
+                message: "The selected employee has been added to the group!"
               })
             );
             return;
@@ -64,7 +60,7 @@ let AddMember = app.post("/add-member", upload.none(), (req, res) => {
         return res.send(
           JSON.stringify({
             success: true,
-            message: member.name + "has been added to the group!"
+            message: "The selected employee has been added to the group!"
           })
         );
       }
