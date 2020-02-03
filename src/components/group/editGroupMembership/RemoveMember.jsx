@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { Button, Icon } from "semantic-ui-react";
 
 export class RemoveMember extends Component {
   handleDelete = async () => {
@@ -29,7 +30,7 @@ export class RemoveMember extends Component {
   render() {
     return (
       <React.Fragment>
-        <button onClick={this.handleDelete}>Remove</button>
+        <Icon color="red" onClick={this.handleDelete} name="delete" />
       </React.Fragment>
     );
   }

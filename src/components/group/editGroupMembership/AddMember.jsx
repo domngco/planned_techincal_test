@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { Button, Icon } from "semantic-ui-react";
 
 export class AddMember extends Component {
   handleAdd = async () => {
@@ -28,7 +29,7 @@ export class AddMember extends Component {
   render() {
     return (
       <React.Fragment>
-        <button onClick={this.handleAdd}>Add</button>
+        <Icon onClick={this.handleAdd} color="green" name="add" />
       </React.Fragment>
     );
   }

@@ -20,7 +20,7 @@ let RemoveMember = app.post("/remove-member", upload.none(), (req, res) => {
   console.log("groupID", _groupID);
   let _memberID = req.body.memberID;
   console.log("memberID", _memberID);
-  dbo.collection("group-membership").update(
+  dbo.collection("group-membership").updateOne(
     { groupID: _groupID },
     {
       $pull: {

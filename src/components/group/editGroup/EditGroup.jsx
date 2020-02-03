@@ -34,6 +34,7 @@ export class UnconnectedGroup extends Component {
     }
     if (body.success) {
       this.setState({ group: _group });
+      console.log("this.state.edit group,", this.state);
       return;
     }
   };

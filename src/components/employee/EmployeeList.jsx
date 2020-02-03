@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import { Link } from "react-router-dom";
-import { Table } from "semantic-ui-react";
+import { Table, Icon, Grid } from "semantic-ui-react";
 
 export class EmployeeList extends Component {
   constructor(props) {
@@ -23,7 +23,6 @@ export class EmployeeList extends Component {
     let body = JSON.parse(responseBody);
     let allEmployees = body.message;
     this.setState({ employees: allEmployees });
-    
   };
 
   handleSort = clickedColumn => () => {
@@ -94,7 +93,13 @@ export class EmployeeList extends Component {
                     <Table.Cell>{email}</Table.Cell>
                     <Table.Cell>{phone}</Table.Cell>
                     <Table.Cell selectable>
-                      <Link to={"/employee/" + _id}>Learn More</Link>
+                      <Grid centered>
+                        <Grid.Row verticalAlign="middle">
+                          <Link to={"/employee/" + _id}>
+                            <Icon name="search plus" />
+                          </Link>
+                        </Grid.Row>
+                      </Grid>
                     </Table.Cell>
                   </Table.Row>
                 );

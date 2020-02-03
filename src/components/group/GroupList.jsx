@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Table } from "semantic-ui-react";
+import { Table, Icon, Grid } from "semantic-ui-react";
 import _ from "lodash";
 
 export class GroupList extends Component {
@@ -77,7 +77,13 @@ export class GroupList extends Component {
                   <Table.Cell>{department}</Table.Cell>
                   <Table.Cell>{description}</Table.Cell>
                   <Table.Cell selectable>
-                    <Link to={"/group/" + _id}>Learn More</Link>
+                    <Grid centered>
+                      <Grid.Row verticalAlign="middle">
+                        <Link to={"/group/" + _id}>
+                          <Icon name="search plus" />
+                        </Link>
+                      </Grid.Row>
+                    </Grid>
                   </Table.Cell>
                 </Table.Row>
               );

@@ -14,9 +14,9 @@ export class UnconnectedEmployee extends Component {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.handleEmployee();
-  };
+  }
 
   handleEmployee = async () => {
     let data = new FormData();
