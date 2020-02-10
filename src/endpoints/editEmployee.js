@@ -17,6 +17,7 @@ MongoClient.connect(
 );
 
 let EditEmployee = app.post("/edit-employee", upload.none(), (req, res) => {
+  let _employeeID = req.body.employeeID;
   let _firstName = req.body.firstName;
   let _lastName = req.body.lastName;
   let _title = req.body.title;
